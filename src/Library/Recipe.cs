@@ -6,17 +6,24 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Full_GRASP_And_SOLID
 {
     public class Recipe
     {
+        
+        private static List<Product> productCatalog = new List<Product>();
+
+        private static List<Equipment> equipmentCatalog = new List<Equipment>();
         private IList<Step> steps = new List<Step>();
 
         public Product FinalProduct { get; set; }
 
-        public void AddStep(Step step)
+        public void AddStep(string producto, int cant, string equipment, int duration)
         {
+            Step step = new Step(Catalog.GetProduct(producto), cant, Catalog.GetEquipment(equipment), duration);
             this.steps.Add(step);
         }
 
@@ -52,5 +59,6 @@ namespace Full_GRASP_And_SOLID
 
             return result;
         }
+        
     }
 }
